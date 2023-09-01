@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Project;
 use App\Models\Status;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -18,6 +19,7 @@ class ProjectSeeder extends Seeder
     {
         $typeIds = Type::all()->pluck('id');
         $statusIds = Status::all()->pluck('id');
+        $technologyIds = Technology::all()->pluck('id')->toArray();
         for ($i = 0; $i < 40; $i++) {
             $newProject = new Project();
             $newProject->type_id = $faker->randomElement($typeIds);
@@ -27,6 +29,7 @@ class ProjectSeeder extends Seeder
             $newProject->start_date = $faker->date();
             $newProject->end_date = $faker->date();
             $newProject->save();
+            $newProject->technologies()->sync([$faker->randomElement($technologyIds), $faker->randomElement($technologyIds), $faker->randomElement($technologyIds)]);
         }
     }
 }

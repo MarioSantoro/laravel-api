@@ -2,16 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\Project;
 use App\Models\Technology;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Generator as Faker;
 
 class TechnologySeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(Faker $faker): void
     {
         $images = [
             'https://cdn.freebiesupply.com/logos/large/2x/php-logo-svg-vector.svg',
@@ -25,6 +27,7 @@ class TechnologySeeder extends Seeder
             'https://seeklogo.com/images/C/css3-logo-8724075274-seeklogo.com.png',
             'https://e7.pngegg.com/pngimages/72/936/png-clipart-sass-cascading-style-sheets-preprocessor-less-postcss-meng-miscellaneous-text-thumbnail.png',
         ];
+
         $technologies = ['php', 'Vue', 'Js', 'Laravel', 'React', 'Bootstrap', 'Tailwind', 'Html', 'Css', 'Scss'];
         foreach ($technologies as $key => $technology) {
             $newTechonology = new Technology();
